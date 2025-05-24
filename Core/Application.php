@@ -1,6 +1,6 @@
 <?php
 
-require_once 'core/Router.php';
+namespace APP\Core;
 
 class Application {
 
@@ -9,4 +9,10 @@ class Application {
     public function __construct() {
         $this->router = new Router();
     }
+
+
+    public function run() {
+        
+    }
+
 }
