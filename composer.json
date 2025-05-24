@@ -1,0 +1,15 @@
+{
+    "name": "alinaqvi/php-mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "APP\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Syed Muhammad Ali Naqvi",
+            "email": "techknowasia@proton.me"
+        }
+    ],
+    "require": {}
+}
