@@ -23,6 +23,10 @@ class Router {
     }
     public function resolve() {
         // Logic to resolve the request and call the appropriate callback
-        $this->request->getUri();
+        $path = $this->request->getUri();
+        $method = $this->request->getMethod();
+        /*
+        var_dump($path);
+        */
     }
 }

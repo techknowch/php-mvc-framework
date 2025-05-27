@@ -15,7 +15,7 @@ class Request
 
     public function getMethod(): string
     {
-        return $this->method;
+        return strtolower($_SERVER['REQUEST_METHOD'] ?? 'get');
     }
 
     public function getUri()
