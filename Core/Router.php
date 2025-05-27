@@ -25,6 +25,10 @@ class Router {
         // Logic to resolve the request and call the appropriate callback
         $path = $this->request->getUri();
         $method = $this->request->getMethod();
+        $callback = $this->routes[$method][$path] ?? null;
+        echo '<pre>';
+        var_dump($method);
+        echo '</pre>';
         /*
         var_dump($path);
         */
