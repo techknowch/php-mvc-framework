@@ -1,5 +1,7 @@
 <?php
 
+namespace APP\Core;
+
 class Request
 {
     protected string $method;
