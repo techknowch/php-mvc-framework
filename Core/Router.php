@@ -17,4 +17,10 @@ class Router {
         // Logic to handle GET requests
         $this->routes['get'][$path] = $callback;
     }
+    public function resolve() {
+        // Logic to resolve the request and call the appropriate callback
+        var_dump($_SERVER);
+
+
+    }
 }
