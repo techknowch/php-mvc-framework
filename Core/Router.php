@@ -32,9 +32,12 @@ class Router {
             echo "404 Not Found";
             return;
         }
+        echo call_user_func($callback, $this->request);
+        /*
         echo '<pre>';
         var_dump($callback);
         echo '</pre>';
+        */
         /*
         var_dump($path);
         */
