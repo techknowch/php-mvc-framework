@@ -11,10 +11,6 @@ class Request
 
     public function __construct()
     {
-        $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        $this->uri = $_SERVER['REQUEST_URI'] ?? '/';
-        $this->headers = getallheaders();
-        $this->body = json_decode(file_get_contents('php://input'), true) ?? [];
     }
 
     public function getMethod(): string
@@ -22,14 +18,17 @@ class Request
         return $this->method;
     }
 
-    public function getUri(): string
+    public function getUri()
     {
-        $path = $this->uri;
+        $path = $this->uri = $_SERVER['REQUEST_URI'] ?? '/';
         $queryPos = strpos($path, '?');
         if ($queryPos !== false) {
             $path = substr($path, 0, $queryPos);
         }
-        return rtrim($path, '/');
+        else {
+            return $path;
+        }
+        return substr($path, 0, $queryPos);
     }
 
     public function getHeaders(): array
