@@ -26,8 +26,14 @@ class Router {
         $path = $this->request->getUri();
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? null;
+        if($callback === null) {
+            // Handle 404 Not Found
+            http_response_code(404);
+            echo "404 Not Found";
+            return;
+        }
         echo '<pre>';
-        var_dump($method);
+        var_dump($callback);
         echo '</pre>';
         /*
         var_dump($path);
