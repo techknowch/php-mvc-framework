@@ -46,4 +46,16 @@ class Router {
         var_dump($path);
         */
     }
+
+    public function renderView(string $viewName, array $params = []): void {
+        $viewPath = __DIR__ . '/../views/' . $viewName . '.php';
+        if (!file_exists($viewPath)) {
+            http_response_code(404);
+            echo "View not found: " . htmlspecialchars($viewName);
+            return;
+        }
+        extract($params);
+        require_once $viewPath;
+    }
+
 }
