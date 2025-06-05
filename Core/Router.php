@@ -17,7 +17,7 @@ class Router {
     public function __construct(\APP\Core\Request $request) {
         $this->request = $request;
     }
-    public function get(string $path, callable $callback) {
+    public function get(string $path, callable|string $callback) {
         // Logic to handle GET requests
         $this->routes['get'][$path] = $callback;
     }
@@ -32,7 +32,11 @@ class Router {
             echo "404 Not Found";
             return;
         }
-        echo call_user_func($callback, $this->request);
+        if(is_string($callback)) {
+            // If the callback is a string, assume it's a view file
+            return $this->renderView($callback);
+        }
+        return call_user_func($callback, $this->request);
         /*
         echo '<pre>';
         var_dump($callback);
