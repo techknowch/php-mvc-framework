@@ -14,8 +14,6 @@ $app->router->get('/about', function() {
     return 'This is the about page.';
 });
 
-$app->router->get('/contact', function() {
-    return 'This is the contact page.';
-});
+$app->router->get('/contact', 'contact');
 
 $app->run();
