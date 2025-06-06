@@ -48,7 +48,35 @@ class Router {
     }
 
     public function renderView(string $viewName, array $params = []): void {
-        $viewPath = __DIR__ . '/../views/' . $viewName . '.php';
+        $layoutContent = $this->renderLayout();
+        $veiwContent = $this->renderOnlyView($viewName, $params);
+        echo str_replace('{{content}}', $veiwContent, $layoutContent);
+        /*
+        $viewPath = Application::$ROOT_DIR . '/views/' . $viewName . '.php';
+        if (!file_exists($viewPath)) {
+            http_response_code(404);
+            echo "View not found: " . htmlspecialchars($viewName);
+            return;
+        }
+        extract($params);
+        require_once $viewPath;
+        */
+    }
+
+    protected function renderLayout(): string {
+        $layoutPath = Application::$ROOT_DIR . '/views/layouts/main.php';
+        if (!file_exists($layoutPath)) {
+            http_response_code(404);
+            echo "Layout not found.";
+            return '';
+        }
+        ob_start();
+        require_once $layoutPath;
+        return ob_get_clean();
+    }
+
+    protected function renderOnlyView(string $viewName, array $params = []): void {
+        $viewPath = Application::$ROOT_DIR . '/views/' . $viewName . '.php';
         if (!file_exists($viewPath)) {
             http_response_code(404);
             echo "View not found: " . htmlspecialchars($viewName);

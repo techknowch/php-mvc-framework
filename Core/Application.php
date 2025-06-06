@@ -4,7 +4,7 @@ namespace APP\Core;
 
 class Application {
 
-    public static sring $ROOT_DIR;
+    public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
 
