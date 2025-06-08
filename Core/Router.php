@@ -39,10 +39,11 @@ class Router {
         if($callback === null) {
             // Application::$app->response->setStatusCode(404);
             $this->response->setStatusCode(404);
+            $this->renderContent("404 Not Found");
             // If no callback is found, handle the 404 Not Found error
             // Handle 404 Not Found
-            http_response_code(404);
-            echo "404 Not Found";
+            // http_response_code(404);
+            // echo "404 Not Found";
             return;
         }
         if(is_string($callback)) {
@@ -74,6 +75,11 @@ class Router {
         extract($params);
         require_once $viewPath;
         */
+    }
+
+    public function renderContent(string $content): void {
+        $layoutContent = $this->renderLayout();
+        echo str_replace('{{content}}', $content, $layoutContent);
     }
 
     protected function renderLayout(): string {
