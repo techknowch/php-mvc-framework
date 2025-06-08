@@ -13,5 +13,8 @@ $app->router->get('/about', function() {
 });
 
 $app->router->get('/contact', 'contact');
+$app->router->post('/contact', function() {
+    return 'This is the contact page.';
+});
 
 $app->run();
