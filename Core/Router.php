@@ -27,6 +27,8 @@ class Router {
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? null;
         if($callback === null) {
+            Application::$app->response->setStatusCode(404);
+            // If no callback is found, handle the 404 Not Found error
             // Handle 404 Not Found
             http_response_code(404);
             echo "404 Not Found";
