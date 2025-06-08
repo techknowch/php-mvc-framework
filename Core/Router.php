@@ -5,6 +5,7 @@ namespace APP\Core;
 
 class Router {
     public Request $request;
+    public Response $response;
     protected array $routes = [
         'get' => [],
         'post' => [],
@@ -14,8 +15,13 @@ class Router {
         'options' => [],
         'head' => [],
     ];
-    public function __construct(\APP\Core\Request $request) {
+    public function __construct(Request $request, Response $response = null) {
         $this->request = $request;
+        if ($response === null) {
+            $this->response = new Response();
+        } else {
+            $this->response = $response;
+        }
     }
     public function get(string $path, callable|string $callback) {
         // Logic to handle GET requests
