@@ -39,7 +39,10 @@ class Router {
         if($callback === null) {
             // Application::$app->response->setStatusCode(404);
             $this->response->setStatusCode(404);
-            $this->renderContent("404 Not Found");
+            // $this->renderContent("404 Not Found");
+            $this->renderView('404', [
+                'message' => 'Page not found'
+            ]); 
             // If no callback is found, handle the 404 Not Found error
             // Handle 404 Not Found
             // http_response_code(404);
